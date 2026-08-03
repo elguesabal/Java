@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class Swing {
+public class Swing1 {
 	public static void main(String[] args) {
 		JFrame 	window = new JFrame("Window");
 		JLabel 	text = new JLabel("Vampeta");
