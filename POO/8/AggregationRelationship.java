@@ -128,11 +128,100 @@ class Fighter {
 	}
 }
 
-public class RelationshipBetweenClasses {
+class Fight {
+	private Fighter	challenged;
+	private Fighter	challenging;
+	private int		rounds;
+	private boolean	approved;
+
+	public Fight(Fighter challenged, Fighter challenging) {
+		this.setChallenged(challenged);
+		this.setChallenging(challenging);
+	}
+
+	public Fighter getChallenged() {
+		return (this.challenged);
+	}
+
+	public void setChallenged(Fighter challenged) {
+		this.challenged = challenged;
+	}
+
+	public Fighter getChallenging() {
+		return (this.challenging);
+	}
+
+	public void setChallenging(Fighter challenging) {
+		this.challenging = challenging;
+	}
+
+	public int getRounds() {
+		return (this.rounds);
+	}
+
+	public void setRounds(int rounds) {
+		this.rounds = rounds;
+	}
+
+	public boolean getApproved() {
+		return (this.approved);
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
+	public void scheduleFight() {
+		if (this.getChallenged().getName().equals(this.getChallenging().getName())) {
+			System.out.println("Error");
+			this.setApproved(false);
+		} else if (!this.getChallenged().getCategory().equals(this.getChallenging().getCategory())) {
+			System.out.println("Error");
+			this.setApproved(false);
+		} else {
+			this.setApproved(true);
+		}
+	}
+
+	public void fight() {
+		if (!this.getApproved()) {
+			System.out.println("Error");
+			return;
+		}
+		this.getChallenged().present();
+		System.out.println();
+		this.getChallenging().present();
+		System.out.println();
+		int	winner = (int) (Math.random() * 3);
+		switch (winner) {
+			case 0:
+				System.out.println("Draw");
+				this.getChallenged().drawFight();
+				this.getChallenging().drawFight();
+				break;
+			case 1:
+				System.out.println(this.getChallenged().getName() + " winner");
+				this.getChallenged().winFight();
+				this.getChallenging().loseFight();
+				break;
+			case 2:
+				System.out.println(this.getChallenging().getName() + " winner");
+				this.getChallenged().loseFight();
+				this.getChallenging().winFight();
+				break;
+		}
+	}
+}
+
+public class AggregationRelationship {
 	public static void main(String[] args) {
 		Fighter	fighter1 = new Fighter("Pretty Boy", "França", 31, 1.75f, 68.9f);
 		Fighter	fighter2 = new Fighter("Putscript", "Brasil", 29, 1.68f, 57.8f);
 		Fighter	fighter3 = new Fighter("Snapshadow", "EUA", 35, 1.65f, 80.9f);
 		Fighter	fighter4 = new Fighter("Dead Code", "Austrália", 28, 1.93f, 81.6f);
+		Fight	fight = new Fight(fighter1, fighter2);
+
+		fight.scheduleFight();
+		fight.fight();
 	}
 }
