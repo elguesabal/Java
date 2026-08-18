@@ -99,6 +99,7 @@ final class Scholarship extends Student {
 		System.out.println("Renew scholarship");
 	}
 
+	@Override
 	public void paidRegistration() {
 		System.out.println("Paid at a discount");
 	}
