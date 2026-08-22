@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/vampeta")
 public class VampetaController {
 	@Autowired
 	private VampetaService vampetaService;
@@ -23,7 +23,7 @@ public class VampetaController {
 		return (this.vampetaService.vampeta("vampeta"));
 	}
 
-	@PostMapping("/{id}")
+	@PostMapping("/vampeta/{id}")
 	public String postVampeta(@PathVariable("id") String id, @RequestParam(value = "vampeta", defaultValue = "") String param, @RequestBody User body) {
 		System.out.println("id: " + id);
 		System.out.println("param: " + param);
